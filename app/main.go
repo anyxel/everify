@@ -9,10 +9,15 @@ import (
 	"time"
 )
 
+var (
+	version string
+	build   string
+)
+
 func main() {
 	app := &cli.App{
 		Name:    "everify",
-		Version: "v1.0.0",
+		Version: version,
 		Usage:   "Anyxel Email Verify",
 
 		Flags: []cli.Flag{
@@ -45,6 +50,8 @@ func main() {
 				verifyEmail(spin, email)
 			} else {
 				fmt.Println("Anyxel Email Verify.")
+				fmt.Println("Version: ", version)
+				fmt.Println("Build: ", build)
 			}
 
 			return nil
