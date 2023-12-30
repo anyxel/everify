@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/mdobydullah/go-spinner"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
-	"time"
 )
 
 var (
@@ -31,23 +29,7 @@ func main() {
 			if len(cCtx.String("email")) != 0 {
 				email := cCtx.String("email")
 
-				// Email validation
-				spin := spinner.StartNew("Validate: processing...")
-				time.Sleep(1 * time.Second)
-				valid := validateEmail(email)
-				if !valid {
-					spin.Stop()
-					fmt.Printf("x Validate: %s is an invalid email!", email)
-					return nil
-				}
-				spin.Stop()
-				fmt.Println("✓ Validate: completed")
-
-				// Verify email's domain
-				verifyDomain(spin, email)
-
-				// Verify is it real or not
-				verifyEmail(spin, email)
+				run(email)
 			} else {
 				fmt.Println("Anyxel Email Verify.")
 				fmt.Println("Version: ", version)

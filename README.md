@@ -10,44 +10,48 @@
 * Domain verification
 * MX (Mail Exchange records) verification
 
-## Installation
+## Use in Go Project
 
 To install `eVerify`, simply run:
 
 ```bash
 go get github.com/anyxel/everify
+
+import (
+  "github.com/anyxel/everify"
+)
+
+everify.run('email@exampl.com')
 ```
 
-Run
+## Git Clone & Run
 
 ```bash
+git clone https://github.com/anyxel/everify.git
+cd everify
 go run -ldflags "-X main.version=v1.0.0 -X main.build=31122023" ./app
 ```
 
 ## Build & Run
 
-Linux:
+All possible options:
 
 ```bash
-go build -o everify -ldflags "-X main.version=v1.0.0 -X 'main.build=$(date)'" ./app
-
-./everify
+go tool dist list
 ```
 
-Windows:
+Example Linux/amd64:
 
 ```bash
-go build -o everify.exe -ldflags "-X main.version=v1.0.0 -X 'main.build=$(date)'" ./app
+env GOOS=linux GOARCH=amd64 go build -o everify -ldflags "-X main.version=v1.0.0 -X 'main.build=$(date)'" ./app
 
-./everify
-```
-
-Available commands
-
-```bash
-# linux
 ./everify -h
+```
 
-# windows
+Example Windows/amd64:
+
+```bash
+env GOOS=windows GOARCH=amd64 go build -o everify.exe -ldflags "-X main.version=v1.0.0 -X 'main.build=$(date)'" ./app
+
 ./everify.exe -h
 ```

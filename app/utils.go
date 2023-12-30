@@ -10,6 +10,27 @@ import (
 	"time"
 )
 
+// Main function
+func run(email string) {
+	// Email validation
+	spin := spinner.StartNew("Validate: processing...")
+	time.Sleep(1 * time.Second)
+	valid := validateEmail(email)
+	if !valid {
+		spin.Stop()
+		fmt.Printf("x Validate: %s is an invalid email!", email)
+		return
+	}
+	spin.Stop()
+	fmt.Println("✓ Validate: completed")
+
+	// Verify email's domain
+	verifyDomain(spin, email)
+
+	// Verify is it real or not
+	verifyEmail(spin, email)
+}
+
 func validateEmail(email string) bool {
 	_, err := mail.ParseAddress(email)
 	return err == nil
